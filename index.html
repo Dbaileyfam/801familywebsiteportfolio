@@ -22,6 +22,17 @@
   </style>
 </head>
 <body>
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-beams"></div>
+    <div class="bg-aurora">
+      <span class="bg-orb bg-orb--1"></span>
+      <span class="bg-orb bg-orb--2"></span>
+      <span class="bg-orb bg-orb--3"></span>
+      <span class="bg-orb bg-orb--4"></span>
+    </div>
+    <div class="bg-grid"></div>
+    <canvas class="bg-canvas" id="bg-canvas"></canvas>
+  </div>
   <div class="cursor-glow" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
 
@@ -202,6 +213,7 @@
   </footer>
 
   <script src="projects.js"></script>
+  <script src="background.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

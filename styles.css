@@ -40,18 +40,162 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -3;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(255, 107, 53, 0.22), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(199, 125, 255, 0.18), transparent 50%),
-    radial-gradient(ellipse 50% 60% at 50% 100%, rgba(6, 214, 160, 0.12), transparent 55%),
-    var(--bg);
-  animation: meshShift 18s ease-in-out infinite alternate;
+  z-index: -4;
+  background: var(--bg);
 }
 
-@keyframes meshShift {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(25deg); }
+/* ─── Immersive background scene ─── */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-beams {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+}
+
+.bg-beams::before,
+.bg-beams::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  width: 38vw;
+  height: 75vh;
+  background: linear-gradient(
+    175deg,
+    rgba(255, 107, 53, 0.14) 0%,
+    rgba(255, 107, 53, 0.04) 35%,
+    transparent 70%
+  );
+  filter: blur(28px);
+  transform-origin: top center;
+  animation: beamSway 14s ease-in-out infinite;
+}
+
+.bg-beams::before {
+  left: 8%;
+  transform: rotate(-12deg);
+}
+
+.bg-beams::after {
+  right: 6%;
+  transform: rotate(14deg);
+  background: linear-gradient(
+    175deg,
+    rgba(199, 125, 255, 0.16) 0%,
+    rgba(199, 125, 255, 0.05) 35%,
+    transparent 70%
+  );
+  animation-name: beamSwayRight;
+  animation-delay: -7s;
+}
+
+@keyframes beamSway {
+  0%, 100% { opacity: 0.7; transform: rotate(-12deg) scaleX(1); }
+  50% { opacity: 1; transform: rotate(-6deg) scaleX(1.08); }
+}
+
+@keyframes beamSwayRight {
+  0%, 100% { opacity: 0.7; transform: rotate(14deg) scaleX(1); }
+  50% { opacity: 1; transform: rotate(8deg) scaleX(1.08); }
+}
+
+.bg-aurora {
+  position: absolute;
+  inset: -20%;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.bg-orb--1 {
+  width: min(55vw, 520px);
+  height: min(55vw, 520px);
+  top: 5%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.5), transparent 68%);
+  animation: orbDrift1 22s ease-in-out infinite;
+}
+
+.bg-orb--2 {
+  width: min(45vw, 420px);
+  height: min(45vw, 420px);
+  top: 35%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(199, 125, 255, 0.45), transparent 68%);
+  animation: orbDrift2 26s ease-in-out infinite;
+}
+
+.bg-orb--3 {
+  width: min(40vw, 380px);
+  height: min(40vw, 380px);
+  bottom: 5%;
+  left: 25%;
+  background: radial-gradient(circle, rgba(6, 214, 160, 0.35), transparent 68%);
+  animation: orbDrift3 20s ease-in-out infinite;
+}
+
+.bg-orb--4 {
+  width: min(35vw, 320px);
+  height: min(35vw, 320px);
+  top: 55%;
+  left: 55%;
+  background: radial-gradient(circle, rgba(255, 159, 28, 0.25), transparent 68%);
+  animation: orbDrift2 18s ease-in-out infinite reverse;
+}
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.08); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, 5%) scale(1.06); }
+}
+
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(5%, -6%) scale(1.1); }
+}
+
+.bg-grid {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -5%;
+  height: 55vh;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(420px) rotateX(72deg);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+  opacity: 0.55;
+}
+
+.bg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+.bg-scene.is-parallax .bg-aurora {
+  transition: transform 0.15s ease-out;
 }
 
 .noise {
@@ -1092,6 +1236,16 @@ img {
   }
 
   .cursor-glow {
+    display: none;
+  }
+
+  .bg-orb,
+  .bg-beams::before,
+  .bg-beams::after {
+    animation: none !important;
+  }
+
+  .bg-canvas {
     display: none;
   }
 }
