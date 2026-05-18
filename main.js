@@ -1,0 +1,188 @@
+(function () {
+  const grid = document.getElementById("project-grid");
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const yearEl = document.getElementById("year");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
+  const cursorGlow = document.querySelector(".cursor-glow");
+
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ─── Render project cards ─── */
+  function buildWaveBars() {
+    const wave = document.createElement("div");
+    wave.className = "card-wave";
+    wave.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < 12; i++) {
+      const bar = document.createElement("span");
+      bar.style.animationDuration = `${0.8 + Math.random() * 0.8}s`;
+      wave.appendChild(bar);
+    }
+    return wave;
+  }
+
+  function renderProjects(filter = "all") {
+    if (!grid || typeof PROJECTS === "undefined") return;
+
+    grid.innerHTML = "";
+
+    PROJECTS.forEach((project, index) => {
+      if (filter !== "all" && project.type !== filter) return;
+
+      const card = document.createElement("a");
+      card.href = project.url;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+      card.className = "project-card reveal";
+      card.dataset.type = project.type;
+      card.style.setProperty("--card-accent", project.accent);
+      card.setAttribute("aria-label", `Visit ${project.title} — opens in new tab`);
+
+      const typeLabel = project.type === "epk" ? "EPK" : "Website";
+
+      card.innerHTML = `
+        <span class="project-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+        <div class="project-card-inner">
+          <span class="project-type">${typeLabel}</span>
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-meta">${project.genre} · ${project.location}</p>
+          <p class="project-desc">${project.description}</p>
+          <div class="project-tags">
+            ${project.tags.map((t) => `<span>${t}</span>`).join("")}
+          </div>
+          <span class="project-link-hint">
+            Visit live site
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </span>
+        </div>
+      `;
+
+      card.prepend(buildWaveBars());
+      grid.appendChild(card);
+
+      requestAnimationFrame(() => {
+        observeReveal(card);
+      });
+    });
+
+    initCardTilt();
+  }
+
+  /* ─── Filters ─── */
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+      filterBtns.forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-selected", b === btn ? "true" : "false");
+      });
+      renderProjects(filter);
+    });
+  });
+
+  /* ─── Scroll reveal ─── */
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  function observeReveal(el) {
+    revealObserver.observe(el);
+  }
+
+  document.querySelectorAll(".reveal").forEach(observeReveal);
+
+  /* ─── Counter animation ─── */
+  const countEl = document.querySelector("[data-count]");
+  if (countEl) {
+    const target = parseInt(countEl.dataset.count, 10);
+    const countObserver = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        let current = 0;
+        const step = Math.ceil(target / 24);
+        const tick = () => {
+          current = Math.min(current + step, target);
+          countEl.textContent = current;
+          if (current < target) requestAnimationFrame(tick);
+        };
+        tick();
+        countObserver.disconnect();
+      },
+      { threshold: 0.5 }
+    );
+    countObserver.observe(countEl);
+  }
+
+  /* ─── 3D tilt on cards ─── */
+  function initCardTilt() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    document.querySelectorAll(".project-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const tiltX = (y - 0.5) * -12;
+        const tiltY = (x - 0.5) * 12;
+
+        card.style.setProperty("--spot-x", `${x * 100}%`);
+        card.style.setProperty("--spot-y", `${y * 100}%`);
+        card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ─── Cursor glow ─── */
+  if (cursorGlow && window.matchMedia("(pointer: fine)").matches) {
+    document.body.classList.add("has-pointer");
+    let mx = 0;
+    let my = 0;
+    let cx = 0;
+    let cy = 0;
+
+    document.addEventListener("mousemove", (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function animateGlow() {
+      cx += (mx - cx) * 0.12;
+      cy += (my - cy) * 0.12;
+      cursorGlow.style.left = `${cx}px`;
+      cursorGlow.style.top = `${cy}px`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+  }
+
+  /* ─── Mobile menu ─── */
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      const open = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", open ? "false" : "true");
+      nav.classList.toggle("is-open", !open);
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        nav.classList.remove("is-open");
+      });
+    });
+  }
+
+  renderProjects("all");
+})();

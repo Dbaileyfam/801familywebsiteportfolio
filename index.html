@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="801 Family Studios — A showcase of band websites, EPKs, and artist platforms built with craft and soul." />
+  <meta property="og:title" content="801 Family Studios — Web Portfolio" />
+  <meta property="og:description" content="Band websites &amp; EPKs built for live music — explore 8 live projects." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#07060b" />
+  <title>801 Family Studios — Web Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="#top" class="logo" aria-label="801 Family Studios home">
+      <span class="logo-num">801</span>
+      <span class="logo-text">Family Studios</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="https://www.801familystudios.com/" target="_blank" rel="noopener noreferrer" class="nav-cta">Studio Site</a>
+    </nav>
+    <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-orbit" aria-hidden="true">
+        <span class="orbit-ring"></span>
+        <span class="orbit-dot"></span>
+      </div>
+
+      <p class="hero-eyebrow reveal">Web design &amp; development portfolio</p>
+      <h1 id="hero-heading" class="hero-title reveal">
+        <span class="line">Sites that</span>
+        <span class="line accent">move the room.</span>
+      </h1>
+      <p class="hero-lead reveal">
+        Band homes, electronic press kits, and artist platforms — built for live music,
+        festivals, and the people behind the sound.
+      </p>
+
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-value" data-count="8">0</span>
+          <span class="stat-label">Live projects</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">EPK + Web</span>
+          <span class="stat-label">Full-stack presence</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">UT · WY · CA</span>
+          <span class="stat-label">Artists served</span>
+        </div>
+      </div>
+
+      <a href="#work" class="hero-scroll reveal" aria-label="Scroll to projects">
+        <span>Explore work</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </section>
+
+    <section id="work" class="work" aria-labelledby="work-heading">
+      <div class="section-head reveal">
+        <h2 id="work-heading">Selected work</h2>
+        <p>Tap a card to visit the live site. Filter by project type.</p>
+      </div>
+
+      <div class="filters reveal" role="tablist" aria-label="Filter projects">
+        <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="filter-btn" data-filter="website" role="tab" aria-selected="false">Websites</button>
+        <button type="button" class="filter-btn" data-filter="epk" role="tab" aria-selected="false">EPKs</button>
+      </div>
+
+      <div class="project-grid" id="project-grid"></div>
+
+      <noscript>
+        <ul class="noscript-list">
+          <li><a href="https://www.801familystudios.com/">801 Family Studios</a></li>
+          <li><a href="https://www.oneheartorchestra.com/">Magi &amp; The One Heart Orchestra</a></li>
+          <li><a href="https://www.thealleykatsvibe.com">The Alley Kats</a></li>
+          <li><a href="https://www.dubnectar.com/">Dub Nectar</a></li>
+          <li><a href="https://charleswilsonsoul.net/">Charles Wilson</a></li>
+          <li><a href="https://dbaileyfam.github.io/TribeofIEPK/">Tribe of I EPK</a></li>
+          <li><a href="https://dbaileyfam.github.io/ThePearlsEPK/">The Pearls EPK</a></li>
+          <li><a href="https://dbaileyfam.github.io/theunaffectedepk/">The Unaffected EPK</a></li>
+        </ul>
+      </noscript>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-heading">
+      <div class="about-inner reveal">
+        <h2 id="about-heading">Built for artists who perform</h2>
+        <p>
+          Every project here is a real band or studio presence on the web — from full
+          multi-page sites with events and merch to streamlined EPKs ready for promoters,
+          press, and festival bookers.
+        </p>
+        <p>
+          The goal is always the same: fast load, mobile-first layout, clear booking paths,
+          and visuals that match the energy on stage.
+        </p>
+        <a href="mailto:booking@801familystudios.com" class="about-cta">Start a project →</a>
+      </div>
+      <div class="about-visual reveal" aria-hidden="true">
+        <div class="vinyl">
+          <div class="vinyl-label">801</div>
+          <div class="vinyl-groove"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> 801 Family Studios · Portfolio showcase</p>
+    <a href="https://github.com/Dbaileyfam/801familywebsiteportfolio" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
