@@ -111,28 +111,6 @@
 
   document.querySelectorAll(".reveal").forEach(observeReveal);
 
-  /* ─── Counter animation ─── */
-  const countEl = document.querySelector("[data-count]");
-  if (countEl) {
-    const target = parseInt(countEl.dataset.count, 10);
-    const countObserver = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0].isIntersecting) return;
-        let current = 0;
-        const step = Math.ceil(target / 24);
-        const tick = () => {
-          current = Math.min(current + step, target);
-          countEl.textContent = current;
-          if (current < target) requestAnimationFrame(tick);
-        };
-        tick();
-        countObserver.disconnect();
-      },
-      { threshold: 0.5 }
-    );
-    countObserver.observe(countEl);
-  }
-
   /* ─── 3D tilt on cards ─── */
   function initCardTilt() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
