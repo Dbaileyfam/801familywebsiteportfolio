@@ -350,6 +350,7 @@ img {
 
 .orbit-glow {
   position: absolute;
+  z-index: 0;
   inset: 5%;
   border-radius: 50%;
   background: radial-gradient(
@@ -374,10 +375,10 @@ img {
 }
 
 .orbit-ring--outer {
-  z-index: 1;
+  z-index: 4;
   border: 2px solid transparent;
   background:
-    linear-gradient(#07060b, #07060b) padding-box,
+    linear-gradient(transparent, transparent) padding-box,
     linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent)) border-box;
   box-shadow:
     0 0 40px rgba(255, 107, 53, 0.2),
@@ -411,8 +412,10 @@ img {
 }
 
 .orbit-ring--mid {
+  z-index: 3;
   inset: 14%;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
   animation-duration: 18s;
   animation-direction: reverse;
   box-shadow: inset 0 0 24px rgba(255, 107, 53, 0.08);
@@ -432,9 +435,11 @@ img {
 
 .orbit-dot {
   position: absolute;
+  z-index: 3;
   inset: 22%;
-  border: 1px dashed rgba(199, 125, 255, 0.45);
+  border: 1px dashed rgba(199, 125, 255, 0.5);
   border-radius: 50%;
+  background: transparent;
   animation: spin 12s linear infinite reverse;
 }
 
