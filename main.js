@@ -42,7 +42,13 @@
         <div class="card-preview">
           <div class="browser-chrome" aria-hidden="true">
             <span class="browser-dots"><i></i><i></i><i></i></span>
-            <span class="browser-url">${host}</span>
+            <span class="browser-address">
+              <svg class="browser-lock" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span class="browser-url"><span class="browser-url-protocol">https://</span>${host}</span>
+            </span>
+            <span class="browser-go" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
           </div>
           <div class="card-preview-image">
             <img
@@ -63,9 +69,11 @@
             <div class="project-tags">
               ${project.tags.map((t) => `<span>${t}</span>`).join("")}
             </div>
-            <span class="project-link-hint">
-              Visit live site
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            <span class="project-visit-btn">
+              <span class="project-visit-btn-label">Visit live site</span>
+              <span class="project-visit-btn-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
             </span>
           </div>
         </div>
