@@ -4,7 +4,8 @@
   "description": "An interactive showcase of band websites and electronic press kits built by 801 Family Studios.",
   "main": "main.js",
   "scripts": {
-    "capture-previews": "node scripts/capture-previews.mjs"
+    "capture-previews": "node scripts/capture-previews.mjs",
+    "generate-brand-assets": "node scripts/generate-brand-assets.mjs"
   },
   "repository": {
     "type": "git",
