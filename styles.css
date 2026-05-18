@@ -411,13 +411,11 @@ img {
 }
 
 .orbit-ring--mid {
-  z-index: 1;
-  inset: 6%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  inset: 14%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   animation-duration: 18s;
   animation-direction: reverse;
   box-shadow: inset 0 0 24px rgba(255, 107, 53, 0.08);
-  pointer-events: none;
 }
 
 .orbit-ring--mid::before {
@@ -432,39 +430,38 @@ img {
   box-shadow: 0 0 14px var(--accent-2), 0 0 24px rgba(199, 125, 255, 0.45);
 }
 
+.orbit-dot {
+  position: absolute;
+  inset: 22%;
+  border: 1px dashed rgba(199, 125, 255, 0.45);
+  border-radius: 50%;
+  animation: spin 12s linear infinite reverse;
+}
+
 .orbit-core {
   position: absolute;
   z-index: 2;
-  inset: 5%;
+  inset: 34%;
   border-radius: 50%;
-  background: #000;
+  background: #0a0a0a;
   box-shadow:
-    0 0 40px rgba(255, 107, 53, 0.45),
-    0 0 70px rgba(199, 125, 255, 0.25);
+    0 0 30px rgba(255, 107, 53, 0.55),
+    0 0 60px rgba(199, 125, 255, 0.35),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.06);
   animation: corePulse 3s ease-in-out infinite;
   overflow: hidden;
 }
 
 .orbit-core img {
   position: absolute;
-  inset: -2%;
-  width: 104%;
-  height: 104%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
   object-fit: cover;
   object-position: center center;
   border-radius: 50%;
-}
-
-.orbit-dot {
-  position: absolute;
-  z-index: 3;
-  inset: 5%;
-  border: 1px dashed rgba(199, 125, 255, 0.45);
-  border-radius: 50%;
-  background: transparent;
-  animation: spin 12s linear infinite reverse;
-  pointer-events: none;
+  transform: scale(1.15);
 }
 
 @keyframes corePulse {
