@@ -461,7 +461,7 @@ img {
   object-fit: cover;
   object-position: center center;
   border-radius: 50%;
-  transform: scale(1.15);
+  transform: scale(1.28);
 }
 
 @keyframes corePulse {
