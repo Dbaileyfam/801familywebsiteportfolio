@@ -9,16 +9,12 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ─── Render project cards ─── */
-  function buildWaveBars() {
-    const wave = document.createElement("div");
-    wave.className = "card-wave";
-    wave.setAttribute("aria-hidden", "true");
-    for (let i = 0; i < 12; i++) {
-      const bar = document.createElement("span");
-      bar.style.animationDuration = `${0.8 + Math.random() * 0.8}s`;
-      wave.appendChild(bar);
+  function hostnameFromUrl(url) {
+    try {
+      return new URL(url).hostname.replace(/^www\./, "");
+    } catch {
+      return url;
     }
-    return wave;
   }
 
   function renderProjects(filter = "all") {
@@ -39,25 +35,41 @@
       card.setAttribute("aria-label", `Visit ${project.title} — opens in new tab`);
 
       const typeLabel = project.type === "epk" ? "EPK" : "Website";
+      const previewSrc = `assets/previews/${project.id}.jpg`;
+      const host = hostnameFromUrl(project.url);
 
       card.innerHTML = `
-        <span class="project-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
-        <div class="project-card-inner">
-          <span class="project-type">${typeLabel}</span>
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-meta">${project.genre} · ${project.location}</p>
-          <p class="project-desc">${project.description}</p>
-          <div class="project-tags">
-            ${project.tags.map((t) => `<span>${t}</span>`).join("")}
+        <div class="card-preview">
+          <div class="browser-chrome" aria-hidden="true">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+            <span class="browser-url">${host}</span>
           </div>
-          <span class="project-link-hint">
-            Visit live site
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </span>
+          <div class="card-preview-image">
+            <img
+              src="${previewSrc}"
+              alt="Homepage preview of ${project.title}"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="project-card-body">
+          <span class="project-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+          <div class="project-card-inner">
+            <span class="project-type">${typeLabel}</span>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-meta">${project.genre} · ${project.location}</p>
+            <p class="project-desc">${project.description}</p>
+            <div class="project-tags">
+              ${project.tags.map((t) => `<span>${t}</span>`).join("")}
+            </div>
+            <span class="project-link-hint">
+              Visit live site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </div>
         </div>
       `;
-
-      card.prepend(buildWaveBars());
       grid.appendChild(card);
 
       requestAnimationFrame(() => {

@@ -1,0 +1,23 @@
+{
+  "name": "website-portfolio",
+  "version": "1.0.0",
+  "description": "An interactive showcase of band websites and electronic press kits built by 801 Family Studios.",
+  "main": "main.js",
+  "scripts": {
+    "capture-previews": "node scripts/capture-previews.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dbaileyfam/801familywebsiteportfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dbaileyfam/801familywebsiteportfolio/issues"
+  },
+  "homepage": "https://github.com/Dbaileyfam/801familywebsiteportfolio#readme",
+  "devDependencies": {
+    "playwright": "^1.49.1"
+  }
+}
