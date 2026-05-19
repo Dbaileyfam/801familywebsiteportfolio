@@ -8,6 +8,8 @@ const PROJECTS = [
     url: "https://www.801familystudios.com/",
     accent: "#14b8a6",
     accentAlt: "#f59e0b",
+    previewFile: "801-studios-2025.jpg",
+    previewPosition: "top center",
     description: "Where artists feel at home — recording, management, booking, and full-service studio offerings in one polished hub.",
     tags: ["Studio", "Services", "Artist management"],
   },

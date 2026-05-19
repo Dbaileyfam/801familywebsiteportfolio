@@ -35,7 +35,9 @@
       card.setAttribute("aria-label", `Visit ${project.title} — opens in new tab`);
 
       const typeLabel = project.type === "epk" ? "EPK" : "Website";
-      const previewSrc = `assets/previews/${project.id}.jpg?v=20250519`;
+      const previewFile = project.previewFile || `${project.id}.jpg`;
+      const previewSrc = `assets/previews/${previewFile}`;
+      const previewPosition = project.previewPosition || "top center";
       const host = hostnameFromUrl(project.url);
 
       card.innerHTML = `
@@ -56,6 +58,7 @@
               alt="Homepage preview of ${project.title}"
               loading="lazy"
               decoding="async"
+              style="object-position: ${previewPosition}"
             />
           </div>
         </div>

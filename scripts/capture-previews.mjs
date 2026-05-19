@@ -7,7 +7,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, "../assets/previews");
 
 const PROJECTS = [
-  { id: "801-studios", url: "https://www.801familystudios.com/" },
+  {
+    id: "801-studios",
+    url: "https://www.801familystudios.com/",
+    file: "801-studios-2025.jpg",
+    zoom: 0.82,
+  },
   { id: "one-heart", url: "https://www.oneheartorchestra.com/" },
   { id: "alley-kats", url: "https://www.thealleykatsvibe.com" },
   { id: "dub-nectar", url: "https://www.dubnectar.com/" },
@@ -26,20 +31,30 @@ const page = await browser.newPage({
 });
 
 for (const project of PROJECTS) {
-  const filePath = join(OUT_DIR, `${project.id}.jpg`);
+  const filePath = join(OUT_DIR, project.file || `${project.id}.jpg`);
   console.log(`Capturing ${project.id}…`);
   try {
-    await page.goto(project.url, { waitUntil: "domcontentloaded", timeout: 45000 });
-    await page.waitForTimeout(2500);
+    await page.goto(project.url, { waitUntil: "networkidle", timeout: 60000 });
+    await page.waitForTimeout(4000);
+    if (project.zoom) {
+      await page.evaluate((z) => {
+        document.documentElement.style.zoom = String(z);
+      }, project.zoom);
+      await page.waitForTimeout(500);
+    }
     await page.screenshot({
       path: filePath,
       type: "jpeg",
-      quality: 82,
+      quality: 88,
       clip: { x: 0, y: 0, width: 1280, height: 720 },
     });
     console.log(`  ✓ ${filePath}`);
   } catch (err) {
     console.error(`  ✗ ${project.id}:`, err.message);
+  } finally {
+    await page.evaluate(() => {
+      document.documentElement.style.zoom = "";
+    });
   }
 }
 
