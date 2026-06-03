@@ -97,4 +97,16 @@ const PROJECTS = [
     description: "High-impact rock EPK — Whisky a Go Go highlights, logos, and book-us CTA.",
     tags: ["EPK", "Rock", "Live photos"],
   },
+  {
+    id: "sun-divide",
+    title: "Sun Divide",
+    type: "epk",
+    genre: "Reggae · Rock",
+    location: "Salt Lake City, UT",
+    url: "https://dbaileyfam.github.io/SunDivide/",
+    accent: "#f9c74f",
+    accentAlt: "#f3722c",
+    description: "Festival-ready EPK with bio, streaming, press quotes, show dates, and downloadable press assets.",
+    tags: ["EPK", "Press kit", "Stage plot"],
+  },
 ];

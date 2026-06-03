@@ -20,6 +20,7 @@ const PROJECTS = [
   { id: "tribe-of-i", url: "https://dbaileyfam.github.io/TribeofIEPK/" },
   { id: "the-pearls", url: "https://dbaileyfam.github.io/ThePearlsEPK/" },
   { id: "the-unaffected", url: "https://dbaileyfam.github.io/theunaffectedepk/" },
+  { id: "sun-divide", url: "https://dbaileyfam.github.io/SunDivide/" },
 ];
 
 mkdirSync(OUT_DIR, { recursive: true });
