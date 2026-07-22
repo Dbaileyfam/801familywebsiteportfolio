@@ -156,9 +156,3 @@ const POSTERS = [
     description: "Minimal 9:16 story graphic for the Black Friday Reggae Party — flat landscape and clean type.",
   },
 ];
-
-const POSTER_REEL = {
-  src: "poster-reel.mp4",
-  title: "Poster motion reel",
-  description: "A quick look at our graphic design work in motion.",
-};
