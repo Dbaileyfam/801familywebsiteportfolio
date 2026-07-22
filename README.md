@@ -31,6 +31,10 @@ Open [http://localhost:8080](http://localhost:8080).
 | The Pearls | EPK | https://dbaileyfam.github.io/ThePearlsEPK/ |
 | The Unaffected | EPK | https://dbaileyfam.github.io/theunaffectedepk/ |
 
+## Posters
+
+The **Posters** section showcases graphic design samples (show flyers, brand art, studio promos) and links to [Graphic Design for Bands](https://www.801familystudios.com/graphic-design-for-bands). Edit the `POSTERS` array in `projects.js` and drop images in `assets/posters/`.
+
 ## Customize
 
 Edit `projects.js` to add/remove projects, change colors, or update copy. Styles live in `styles.css`; interactions in `main.js`.

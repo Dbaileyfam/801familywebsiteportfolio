@@ -186,4 +186,78 @@
   }
 
   renderProjects("all");
+  renderPosters();
+
+  /* ─── Poster gallery ─── */
+  function renderPosters() {
+    const posterGrid = document.getElementById("poster-grid");
+    if (!posterGrid || typeof POSTERS === "undefined") return;
+
+    posterGrid.innerHTML = "";
+
+    POSTERS.forEach((poster, index) => {
+      const figure = document.createElement("figure");
+      figure.className = "poster-card reveal";
+      figure.style.setProperty("--poster-delay", `${index * 0.06}s`);
+
+      figure.innerHTML = `
+        <button type="button" class="poster-card-media" data-poster-src="assets/posters/${poster.image}" data-poster-title="${poster.title}" aria-label="Enlarge ${poster.title}">
+          <img
+            src="assets/posters/${poster.image}"
+            alt="${poster.title} — ${poster.category}"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+        <figcaption class="poster-card-caption">
+          <span class="poster-card-category">${poster.category}</span>
+          <h3 class="poster-card-title">${poster.title}</h3>
+          <p class="poster-card-desc">${poster.description}</p>
+        </figcaption>
+      `;
+
+      posterGrid.appendChild(figure);
+      requestAnimationFrame(() => observeReveal(figure));
+    });
+
+    initPosterLightbox();
+  }
+
+  function initPosterLightbox() {
+    let lightbox = document.getElementById("poster-lightbox");
+    if (!lightbox) {
+      lightbox = document.createElement("div");
+      lightbox.id = "poster-lightbox";
+      lightbox.className = "poster-lightbox";
+      lightbox.hidden = true;
+      lightbox.innerHTML = `
+        <button type="button" class="poster-lightbox-close" aria-label="Close poster preview">×</button>
+        <img class="poster-lightbox-image" alt="" />
+      `;
+      document.body.appendChild(lightbox);
+
+      const close = () => {
+        lightbox.hidden = true;
+        document.body.classList.remove("lightbox-open");
+      };
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox || e.target.classList.contains("poster-lightbox-close")) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lightbox.hidden) close();
+      });
+    }
+
+    const img = lightbox.querySelector(".poster-lightbox-image");
+
+    document.querySelectorAll(".poster-card-media").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        img.src = btn.dataset.posterSrc;
+        img.alt = btn.dataset.posterTitle || "";
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+      });
+    });
+  }
 })();

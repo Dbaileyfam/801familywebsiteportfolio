@@ -110,3 +110,55 @@ const PROJECTS = [
     tags: ["EPK", "Press kit", "Stage plot"],
   },
 ];
+
+/** Graphic design posters — pairs with 801 Family Studios Graphic Design for Bands. */
+const POSTERS = [
+  {
+    id: "sawdust-and-strings",
+    title: "Sawdust & Strings",
+    category: "Brand identity",
+    image: "sawdust-and-strings.png",
+    description: "Rustic brand composite for a handcrafted instruments identity — wood, guitars, and portrait compositing.",
+  },
+  {
+    id: "black-friday-reggae-party",
+    title: "Black Friday Reggae Party",
+    category: "Show flyer",
+    image: "black-friday-reggae-party.png",
+    description: "Psychedelic mountain night flyer for Funk & Gonzo, Dub Nectar, and Fear & Loathing at Quarters Downtown.",
+  },
+  {
+    id: "headshine-dub-nectar",
+    title: "Headshine × Dub Nectar",
+    category: "Show flyer",
+    image: "headshine-dub-nectar-july23.png",
+    description: "Bold retro show poster for Redemption Bar and Grill — July 23 in Herriman.",
+  },
+  {
+    id: "dublime-tribute",
+    title: "Dublime Tribute",
+    category: "Show flyer",
+    image: "dublime-tribute.png",
+    description: "Sublime tribute night with Dub Nectar and Ashlie Longo at A Bar Named Sue — dual-date promo.",
+  },
+  {
+    id: "drum-lessons",
+    title: "Drum Lessons",
+    category: "Studio promo",
+    image: "drum-lessons.png",
+    description: "High-contrast lesson promo for Michael Bailey at 801 Family Studios — trial CTA and QR.",
+  },
+  {
+    id: "black-friday-story",
+    title: "Black Friday · Story",
+    category: "Social story",
+    image: "black-friday-reggae-story.png",
+    description: "Minimal 9:16 story graphic for the Black Friday Reggae Party — flat landscape and clean type.",
+  },
+];
+
+const POSTER_REEL = {
+  src: "poster-reel.mp4",
+  title: "Poster motion reel",
+  description: "A quick look at our graphic design work in motion.",
+};
