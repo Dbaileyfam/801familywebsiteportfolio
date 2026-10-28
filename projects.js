@@ -41,7 +41,7 @@ const PROJECTS = [
     type: "website",
     genre: "HVAC · Small business",
     location: "Midvale, UT",
-    url: "https://dbaileyfam.github.io/PaulBrothersHeatingandAir/",
+    url: "https://paulbrothersutah.com/",
     accent: "#e85d04",
     accentAlt: "#1a6fb5",
     description: "Local service site for a family-owned HVAC company — service pages, trust signals, and a clear call or text to book.",

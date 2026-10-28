@@ -10,7 +10,7 @@ const PROJECTS = [
   { id: "swagger", url: "https://swaggertheband.com/" },
   { id: "honor-hour", url: "https://hnrhr.com/" },
   { id: "sawdust-strings", url: "https://sawdustandstrings.com/" },
-  { id: "paul-brothers", url: "https://dbaileyfam.github.io/PaulBrothersHeatingandAir/" },
+  { id: "paul-brothers", url: "https://paulbrothersutah.com/" },
   {
     id: "801-studios",
     url: "https://www.801familystudios.com/",

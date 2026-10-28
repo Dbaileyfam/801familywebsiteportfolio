@@ -41,6 +41,7 @@
       const host = hostnameFromUrl(project.url);
 
       card.innerHTML = `
+        <div class="project-card-face">
         <div class="card-preview">
           <div class="browser-chrome" aria-hidden="true">
             <span class="browser-dots"><i></i><i></i><i></i></span>
@@ -79,6 +80,7 @@
               </span>
             </span>
           </div>
+        </div>
         </div>
       `;
       grid.appendChild(card);
@@ -137,11 +139,13 @@
 
         card.style.setProperty("--spot-x", `${x * 100}%`);
         card.style.setProperty("--spot-y", `${y * 100}%`);
+        card.classList.add("is-tilting");
         card.style.transform = `perspective(900px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
       });
 
       card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
+        card.classList.remove("is-tilting");
+        card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)";
       });
     });
   }
