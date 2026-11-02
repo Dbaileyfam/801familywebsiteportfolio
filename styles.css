@@ -531,6 +531,13 @@ img {
   font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--text-muted);
   font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-bottom: 2.5rem;
 }
 
@@ -1059,6 +1066,57 @@ img {
   font-size: 1rem;
 }
 
+.price-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.price-strip a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 1rem 1.15rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.price-strip a:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  transform: translateY(-2px);
+}
+
+.price-strip-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.price-strip strong {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.price-strip-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .price-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -1251,7 +1309,7 @@ img {
 
 .browser-url {
   min-width: 0;
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   font-weight: 600;
   color: rgba(244, 240, 235, 0.95);
   white-space: nowrap;
@@ -1490,6 +1548,13 @@ img {
   transform: translateX(4px);
 }
 
+.about-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
 .about-visual {
   display: flex;
   justify-content: center;
@@ -1647,6 +1712,10 @@ img {
   .about-inner p {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .about-ctas {
+    justify-content: center;
   }
 
 }
