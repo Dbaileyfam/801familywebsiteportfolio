@@ -279,13 +279,15 @@ img {
 .nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.15rem;
 }
 
 .nav a:not(.nav-cta) {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color 0.2s;
 }
 
@@ -300,7 +302,8 @@ img {
 }
 
 .nav-cta {
-  padding: 0.55rem 1.1rem;
+  padding: 0.55rem 0.85rem;
+  white-space: nowrap;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;

@@ -34,7 +34,7 @@
       card.style.setProperty("--card-accent", project.accent);
       card.setAttribute("aria-label", `Visit ${project.title} — opens in new tab`);
 
-      const typeLabel = project.type === "epk" ? "EPK" : "Website";
+      const typeLabel = project.type === "epk" ? "EPK" : "801 Family Website";
       const previewFile = project.previewFile || `${project.id}.jpg`;
       const previewSrc = `assets/previews/${previewFile}`;
       const previewPosition = project.previewPosition || "top center";
